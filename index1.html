@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz website</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            background-color: pink;
+        }
+
+        .mainbox {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .box {
+            text-transform: capitalize;
+            width: 40%;
+            max-height: max-content;
+            border-radius: 10px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .row {
+            padding-left: 12px;
+            margin: 2rem;
+            width: 100%;
+        }
+
+        #btn {
+            width: 100%;
+            background-color: pink;
+            font-size: 15px;
+            border-radius: 10px;
+            padding: 6px;
+            cursor: pointer;
+        }
+
+        .a {
+            text-transform: uppercase;
+            text-align: center;
+            background-color: whitesmoke;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        .time {
+            padding: 10px;
+            font-size: larger;
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="a">this is a quiz website</h1>
+    <div class="mainbox">
+
+        <div class="box" id="box">
+            <div class="time" id="id"></div>
+            <hr>
+            <!-- store all quetion  -->
+            <h1 id="quetionshow"></h1>
+            <!-- store options -->
+            <div class="row">
+                <input type="radio" name="option" id="A1" value="a">
+                <label for="A1"></label>
+            </div>
+            <div class="row">
+                <input type="radio" name="option" id="B1" value="b">
+                <label for="B1"></label>
+            </div>
+            <div class="row">
+                <input type="radio" name="option" id="C1" value="c">
+                <label for="C1"></label>
+            </div>
+            <div class="row">
+                <input type="radio" name="option" id="D1" value="d">
+                <label for="D1"></label>
+            </div>
+            <button onclick="Submit()" id="btn">SUBMIT</button>
+        </div>
+
+    </div>
+
+    <script>
+        const question = [
+            {
+                "que": "Which of the following is a markup language ?",
+                "a": "JS",
+                "b": "HMTL",
+                "c": "CSS",
+                "d": "JAVA",
+                "correct": "b",
+            },
+            {
+                "que": "Which of the following is a designing language ?",
+                "a": "JAVA",
+                "b": "CSS",
+                "c": "HMTL",
+                "d": "JS",
+                "correct": "b",
+            },
+            {
+                "que": "Which of the following is a scripting language ?",
+                "a": "JS",
+                "b": "HMTL",
+                "c": "CSS",
+                "d": "JAVA",
+                "correct": "a",
+            },
+            {
+                "que": "Which of the following is a strong programming language ?",
+                "a": "JAVA",
+                "b": "CSS",
+                "c": "HMTL",
+                "d": "JS",
+                "correct": "a",
+            },
+        ];
+
+        let total = question.length;
+        let questionshow = document.getElementById("quetionshow");
+        let label = document.querySelectorAll("label")
+        let index = 0;
+        function Load() {
+            if (index === total) {
+                return End()
+            }
+            else {
+
+                reset()
+            }
+            let data = question[index]
+            questionshow.innerText = ` ${index + 1}) ${data.que}`;
+            label[0].innerText = data.a;
+            label[1].innerText = data.b;
+            label[2].innerText = data.c;
+            label[3].innerText = data.d;
+        };
+
+        let right = 0;
+        let wrong = 0;
+
+        const Submit = () => {
+            let data = question[index];
+
+            let ans = getAns()
+            console.log(ans)
+
+            if (ans === data.correct) {
+
+                right++;
+            }
+            else {
+                wrong++;
+            }
+            index++;
+            Load();
+        }
+        let input = document.querySelectorAll("input")
+        const getAns = () => {
+            let ans;
+            input.forEach((inp) => {
+                if (inp.checked) {
+                    ans = inp.value;
+                }
+
+
+            })
+            return ans;
+        }
+        const reset = () => {
+            input.forEach((inp) => {
+                inp.checked = false;
+
+
+            })
+        }
+
+        const End = () => {
+            document.getElementById("box").innerHTML = ` <h3> this is your score </h3> 
+            <h2>${right}/${total} and wrong was ${wrong}</h2>`
+        }
+        Load();
+
+
+
+        setInterval(() => {
+            let date = new Date();
+            let d = date.getDate();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            let a = "AM";
+            if (h > 12) {
+                h -= 12;
+                a = "PM"
+            }
+            if (h == 0) {
+                h = 12;
+            }
+
+            // if h< 10 add 0 condition 
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+            let current = h + ":" + m + ":" + s + ":" + a;
+            document.getElementById("id").innerHTML = current;
+        }, 1000)
+    </script>
+</body>
+
+</html>

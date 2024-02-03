@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rupio website</title>
+    <style>
+        /* CSS styles for the main page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, cyan, yellow);
+
+
+
+        }
+
+        .container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+
+
+        .login-container {
+            width: 80%;
+            max-width: 400px;
+
+            margin: 100px auto 20px;
+
+            background-color: #fff;
+
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="email"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+            box-sizing: border-box;
+            background-color: #f2f2f2;
+            /* Changed background color */
+            border: 1px solid #ccc;
+            /* Added border */
+        }
+
+        .login-container button[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .login-container button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+
+
+
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        #add {
+            width: 100%;
+            background: green;
+            color: white;
+            border-radius: 26px;
+            padding: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="container">
+
+
+
+            <div class="login-container">
+                <h2>Login</h2>
+                <form id="loginForm" onsubmit="redirectToWebsite(); return false;">
+                    <input type="email" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" id="add">Login</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+       
+        function redirectToWebsite() {
+            var websiteLink = "index1.html";
+            window.location.href = websiteLink;
+        }
+    </script>
+</body>
+
+</html>
